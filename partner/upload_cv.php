@@ -18,7 +18,7 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
     <meta name="description" content="BKK SMK Mahardhika Batujajar">
     <meta name="author" content="dmzhari">
 
-    <title>User Dashboard</title>
+    <title>Partner Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
