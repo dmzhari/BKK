@@ -32,12 +32,10 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
+    <!-- Page Wrapper -->,
     <div id="wrapper">
 
         <?php include 'inc/header.php' ?>
-
-
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
