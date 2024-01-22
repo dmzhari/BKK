@@ -60,46 +60,47 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                         <label for="email">Email:</label>
                         <input type="email" class="form-control" id="email" name="email" value="<?= $user[0]['email'] ?>" placeholder="example@example.com" required>
                     </div>
-                    <div class="form-group col-md-4">
+                    <!-- <div class="form-group col-md-4">
                         <label for="jl">Jenis Kelamin:</label>
                         <select id="jl" class="form-control" name="jenis_kelamin" required>
                             <option value="laki-laki">Laki-laki</option>
                             <option value="perempuan">Perempuan</option>
                         </select>
+                    </div> -->
+                    <div class="form-group col-md-4 ">
+                        <label for="nama_lengkap">Nama Lengkap Perusahaan:</label>
+                        <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?= $user[0]['nama_lengkap'] ?>" placeholder="PT. Mahardhika Sejahtera" required>
                     </div>
                     <div class="form-group col-md-3 offset-md-1">
-                        <label for="nama_lengkap">Nama Lengkap:</label>
-                        <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?= $user[0]['nama_lengkap'] ?>" placeholder="Hari Permana" required>
-                    </div>
-                    <div class="form-group col-md-3">
                         <label for="nik">NIK:</label>
                         <input type="text" class="form-control" id="nik" name="nik" value="<?= $user[0]['nik'] ?>" placeholder="3217xxxxxx" required>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="nowa">No Whatsapp:</label>
+                        <label for="nowa">No Telp Office / WA:</label>
                         <input type="text" class="form-control" id="nowa" name="nowa" value="<?= $user[0]['nowa'] ?>" placeholder="0838xxxxxx" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="pendidikan">Pendidikan Terakhir:</label>
                         <input type="text" class="form-control" id="pendidikan" name="pendidikan" value="<?= $user[0]['pendidikan'] ?>" placeholder="SMP" required>
                     </div>
-                    <div class="form-group col-md-4">
+                    <!-- <div class="form-group col-md-4">
                         <label for="tgl">Tanggal Lahir:</label>
                         <input type="text" class="form-control" id="tgl" name="tanggal_lahir" value="<?= $user[0]['tanggal_lahir'] ?>" required>
+                    </div> -->
+                    <div class="form-group col-md-12">
+                        <label for="tentang">Tentang Perusahaan:</label>
+                        <textarea class="form-control" rows="3" id="astentangal" name="tentang_perusahaan" value="<?= $user[0]['asal_sekolah'] ?>" placeholder="SMK Mahardhika Batujajar" required></textarea>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="tempat_lahir">Tempat Lahir:</label>
-                        <input type="text" class="form-control" id="tgl" name="tempat_lahir" value="<?= $user[0]['tempat_lahir'] ?>" placeholder="Bandung" required>
+                    <div class="form-group col-md-12">
+                        <label for="alamat_per">Alamat Perusahaan:</label>
+                        <textarea class="form-control" rows="3" id="alamat_per" name="alamat_perusahaan
+                        " value="<?= $user[0]['asal_sekolah'] ?>" placeholder="SMK Mahardhika Batujajar" required></textarea>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="asal">Asal Sekolah:</label>
-                        <input type="text" class="form-control" id="asal" name="asal_sekolah" value="<?= $user[0]['asal_sekolah'] ?>" placeholder="SMK Mahardhika Batujajar" required>
-                    </div>
-                    <div class="form-group col-md-4">
+                    <!-- <div class="form-group col-md-4">
                         <label for="usia">Usia:</label>
                         <input type="text" class="form-control" id="usia" name="usia" value="<?= $user[0]['usia'] ?>" placeholder="19" required>
-                    </div>
-                    <div class="form-group col-md-4">
+                    </div> -->
+                    <!-- <div class="form-group col-md-4">
                         <label for="jurusan">Jurusan:</label>
                         <select id="jurusan" class="form-control" name="jurusan" required>
                             <option value="RPL">Rekayasa Perangkat Lunak</option>
@@ -108,8 +109,8 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                             <option value="TKR">Teknik Kendaraan Ringan</option>
                             <option value="TBSM">Teknik dan Bisnis Sepeda Motor</option>
                         </select>
-                    </div>
-                    <div class="form-group col-md-3 offset-md-1">
+                    </div> -->
+                    <!-- <div class="form-group col-md-3 offset-md-1">
                         <label for="pekerjaan_terakhir">Pekerjaan Terakhir:</label>
                         <input type="text" class="form-control" id="pekerjaan_terakhir" name="pekerjaan_terakhir" value="<?= $user[0]['pekerjaan_terakhir'] ?>" placeholder="Operator Produksi" required>
                     </div>
@@ -120,7 +121,7 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                     <div class="form-group col-md-3">
                         <label for="berat_badan">Berat Badan:</label>
                         <input type="text" class="form-control" id="berat_badan" name="berat_badan" value="<?= $user[0]['berat_badan'] ?>" placeholder="50" required>
-                    </div>
+                    </div> -->
                     <button type="button" id="submit" class="btn btn-primary form-control">Submit</button>
                 </div>
             </form>

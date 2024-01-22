@@ -2,7 +2,7 @@
 require_once '../inc/function.database.php';
 require_once '../inc/function.default.php';
 
-cek_session('id_client', 'client', 'login.php');
+cek_session('id_partner', 'partner', '../user/login');
 
 if (isset($_POST['username'])) {
     $id             = $conn->real_escape_string($_POST['id_user']);

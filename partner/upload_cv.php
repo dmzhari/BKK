@@ -2,9 +2,9 @@
 include '../inc/function.database.php';
 include '../inc/function.default.php';
 
-cek_session('id_client', 'client', 'login.php');
+cek_session('id_partner', 'partner', '../user/login');
 
-$id   = $_SESSION['id_client'];
+$id   = $_SESSION['id_partner'];
 $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
 ?>
 <!DOCTYPE html>
