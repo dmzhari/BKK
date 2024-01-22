@@ -2,7 +2,7 @@
 include '../inc/function.database.php';
 include '../inc/function.default.php';
 
-cek_session('id_partner', 'partner', '../user/login');
+cek_session('id_client', 'client', 'login.php');
 
 $id   = $_SESSION['id_partner'];
 $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
@@ -19,7 +19,7 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     <meta name="description" content="BKK SMK Mahardhika Batujajar">
     <meta name="author" content="dmzhari">
 
-    <title>User Dashboard</title>
+    <title>Partner Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

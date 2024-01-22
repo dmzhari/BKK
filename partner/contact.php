@@ -5,7 +5,11 @@ include '../inc/function.default.php';
 cek_session('id_partner', 'partner', '../user/login');
 
 $id   = $_SESSION['id_partner'];
+<<<<<<< HEAD
 $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
+=======
+$user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
+>>>>>>> 1c7f353865203a96dfa2a14615508c596a98c163
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +23,7 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
     <meta name="description" content="BKK SMK Mahardhika Batujajar">
     <meta name="author" content="dmzhari">
 
-    <title>User Dashboard</title>
+    <title>Partner Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,12 +36,10 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
+    <!-- Page Wrapper -->,
     <div id="wrapper">
 
         <?php include 'inc/header.php' ?>
-
-
 
         <!-- Begin Page Content -->
         <div class="container-fluid">

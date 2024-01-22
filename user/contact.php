@@ -40,7 +40,6 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
         <?php include 'inc/header.php' ?>
 
 
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
