@@ -5,11 +5,7 @@ include '../inc/function.default.php';
 cek_session('id_partner', 'partner', '../user/login');
 
 $id   = $_SESSION['id_partner'];
-<<<<<<< HEAD
 $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
-=======
-$user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
->>>>>>> 1c7f353865203a96dfa2a14615508c596a98c163
 
 ?>
 <!DOCTYPE html>
