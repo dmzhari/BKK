@@ -1,4 +1,4 @@
 <?php
 session_start();
 session_destroy();
-header('Location: ../user/login.php?logout');
+header('Location: ../user/login?logout');
