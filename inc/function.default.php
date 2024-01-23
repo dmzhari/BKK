@@ -1,22 +1,4 @@
 <?php
-function base_url($atRoot = FALSE, $atCore = FALSE, $parse = FALSE)
-{
-    if (isset($_SERVER['HTTP_HOST'])) {
-        $http = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
-        $hostname = $_SERVER['HTTP_HOST'];
-        $dir = str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
-        $core = preg_split('@/@', str_replace($_SERVER['DOCUMENT_ROOT'], '', realpath(dirname(__FILE__))), null, PREG_SPLIT_NO_EMPTY);
-        $core = $core[0];
-        $tmplt = $atRoot ? ($atCore ? "%s://%s/%s/" : "%s://%s/") : ($atCore ? "%s://%s/%s/" : "%s://%s%s");
-        $end = $atRoot ? ($atCore ? $core : $hostname) : ($atCore ? $core : $dir);
-        $base_url = sprintf($tmplt, $http, $hostname, $end);
-    } else $base_url = 'http://localhost/';
-    if ($parse) {
-        $base_url = parse_url($base_url);
-        if (isset($base_url['path'])) if ($base_url['path'] == '/') $base_url['path'] = '';
-    }
-    return $base_url;
-}
 
 function myquery($query)
 {
@@ -32,7 +14,32 @@ function myquery($query)
 function cek_session($id, $level, $location)
 {
     if (!isset($_SESSION[$id]) && isset($_SESSION['level']) != $level) {
+        echo "<script>alert('Hayo mau ngapain :D')</script>";
         header("Location: $location");
         exit();
     }
+}
+
+function base_url()
+{
+    // Mendapatkan protokol (http atau https)
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+
+    // Mendapatkan domain atau host
+    $host = $_SERVER['HTTP_HOST'];
+
+    // Mendapatkan path (direktori) dari URL
+    $path = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+
+    // Jika domain adalah "localhost" atau "127.0.0.1", tambahkan port jika ada
+    $isLocal = in_array($host, ['localhost', '127.0.0.1']);
+    $port = $isLocal && isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] !== '80' ? ":" . $_SERVER['SERVER_PORT'] : '';
+
+    // Tambahkan slash jika path tidak kosong
+    $path = $path !== '/' ? $path . '/' : '';
+
+    // Menggabungkan semua komponen untuk membentuk base URL
+    $baseUrl = $protocol . "://" . $host . $port . $path;
+
+    return $baseUrl;
 }

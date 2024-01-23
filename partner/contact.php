@@ -4,8 +4,8 @@ include '../inc/function.default.php';
 
 cek_session('id_partner', 'partner', '../user/login');
 
-$id   = $_SESSION['id_partner'];
-$user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
+$id = $_SESSION['id_partner'];
+$user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
 ?>
 <!DOCTYPE html>
@@ -23,7 +23,9 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url() ?>css/sb-admin-2.min.css" rel="stylesheet">
@@ -32,7 +34,7 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->,
+    <!-- Page Wrapper -->
     <div id="wrapper">
 
         <?php include 'inc/header.php' ?>
@@ -59,7 +61,8 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
                                     <i class="fas fa-home"></i>
                                     Alamat
                                 </h5>
-                                <p>Jl. Raya Batujajar No.30, Giriasih, Kec. Batujajar, Kabupaten Bandung Barat, Jawa Barat 40553</p>
+                                <p>Jl. Raya Batujajar No.30, Giriasih, Kec. Batujajar, Kabupaten Bandung Barat, Jawa
+                                    Barat 40553</p>
                             </div>
                             <div class="col-md-12 pt-3">
                                 <h5>
@@ -94,7 +97,9 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                <span>Copyright &copy; BKK SMK Mahardhika <?= date("Y") ?></span>
+                <span>Copyright &copy; BKK SMK Mahardhika
+                    <?= date("Y") ?>
+                </span>
             </div>
         </div>
     </footer>
@@ -112,7 +117,8 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

@@ -2,9 +2,9 @@
 include '../inc/function.database.php';
 include '../inc/function.default.php';
 
-cek_session('id_client', 'client', 'login.php');
+cek_session('id_partner', 'partner', '../user/login');
 
-$id   = $_SESSION['id_partner'];
+$id = $_SESSION['id_partner'];
 $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
 ?>
@@ -23,7 +23,9 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url() ?>css/sb-admin-2.min.css" rel="stylesheet">
@@ -53,9 +55,11 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                 <div class="card card-body">
                     <div class="form-group">
                         <div class="input-group is-invalid mb-3">
-                            <input class="form-control" type="password" id="newpass" placeholder="Masukan Password Baru" required>
+                            <input class="form-control" type="password" id="newpass" placeholder="Masukan Password Baru"
+                                required>
                             <div class="input-group-append">
-                                <button class="btn fas fa-eye input-group-text bg-transparent" id="showpass"></i></button>
+                                <button class="btn fas fa-eye input-group-text bg-transparent"
+                                    id="showpass"></i></button>
                             </div>
                         </div>
                         <button class="btn btn-primary form-control" id="sub">Submit</button>
@@ -73,7 +77,9 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                <span>Copyright &copy; BKK SMK Mahardhika <?= date("Y") ?></span>
+                <span>Copyright &copy; BKK SMK Mahardhika
+                    <?= date("Y") ?>
+                </span>
             </div>
         </div>
     </footer>
@@ -85,7 +91,8 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -128,8 +135,8 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
     <!-- Custom Script -->
     <script>
-        $(document).ready(function() {
-            $('#showpass').click(function() {
+        $(document).ready(function () {
+            $('#showpass').click(function () {
                 if ($(this).hasClass('fas fa-eye')) {
                     $('#newpass').attr('type', 'text');
                     $(this).removeClass('fas fa-eye');
@@ -141,7 +148,7 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                 }
             });
 
-            $('#sub').click(function() {
+            $('#sub').click(function () {
                 let newpass = $('#newpass').val();
 
                 $.ajax({
@@ -150,7 +157,7 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                     data: {
                         "newpass": newpass
                     },
-                    success: function(data) {
+                    success: function (data) {
                         if (data == 'success') {
                             swal.fire({
                                 icon: 'success',

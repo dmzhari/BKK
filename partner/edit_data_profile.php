@@ -4,7 +4,7 @@ include '../inc/function.default.php';
 
 cek_session('id_partner', 'partner', '../user/login');
 
-$id   = $_SESSION['id_partner'];
+$id = $_SESSION['id_partner'];
 $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
 ?>
@@ -23,7 +23,9 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url() ?>css/sb-admin-2.min.css" rel="stylesheet">
@@ -54,11 +56,13 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                     <input type="hidden" name="id_user" value="<?= $id ?>">
                     <div class="form-group col-md-4">
                         <label for="username">Username:</label>
-                        <input type="text" class="form-control" id="username" name="username" value="<?= $user[0]['username'] ?>" placeholder="dmzhari" required>
+                        <input type="text" class="form-control" id="username" name="username"
+                            value="<?= $user[0]['username'] ?>" placeholder="smkmahardhika" required>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<?= $user[0]['email'] ?>" placeholder="example@example.com" required>
+                        <input type="email" class="form-control" id="email" name="email"
+                            value="<?= $user[0]['email'] ?>" placeholder="example@example.com" required>
                     </div>
                     <!-- <div class="form-group col-md-4">
                         <label for="jl">Jenis Kelamin:</label>
@@ -69,32 +73,38 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                     </div> -->
                     <div class="form-group col-md-4 ">
                         <label for="nama_lengkap">Nama Lengkap Perusahaan:</label>
-                        <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?= $user[0]['nama_lengkap'] ?>" placeholder="PT. Mahardhika Sejahtera" required>
+                        <input type="text" class="form-control" id="nama_lengkap" name="nama_perusahaan"
+                            value="<?= $user[0]['nama_perusahaan'] ?>" placeholder="PT. Mahardhika Sejahtera" required>
                     </div>
-                    <div class="form-group col-md-3 offset-md-1">
+                    <div class="form-group col-md-6">
                         <label for="nik">NIK:</label>
-                        <input type="text" class="form-control" id="nik" name="nik" value="<?= $user[0]['nik'] ?>" placeholder="3217xxxxxx" required>
+                        <input type="text" class="form-control" id="nik" name="nik" value="<?= $user[0]['nik'] ?>"
+                            placeholder="3217xxxxxx" required>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-6">
                         <label for="nowa">No Telp Office / WA:</label>
-                        <input type="text" class="form-control" id="nowa" name="nowa" value="<?= $user[0]['nowa'] ?>" placeholder="0838xxxxxx" required>
+                        <input type="text" class="form-control" id="nowa" name="nowa" value="<?= $user[0]['nowa'] ?>"
+                            placeholder="0838xxxxxx" required>
                     </div>
-                    <div class="form-group col-md-4">
+                    <!-- <div class="form-group col-md-4">
                         <label for="pendidikan">Pendidikan Terakhir:</label>
-                        <input type="text" class="form-control" id="pendidikan" name="pendidikan" value="<?= $user[0]['pendidikan'] ?>" placeholder="SMP" required>
-                    </div>
+                        <input type="text" class="form-control" id="pendidikan" name="pendidikan"
+                            value="<?= $user[0]['pendidikan'] ?>" placeholder="SMP" required>
+                    </div> -->
                     <!-- <div class="form-group col-md-4">
                         <label for="tgl">Tanggal Lahir:</label>
                         <input type="text" class="form-control" id="tgl" name="tanggal_lahir" value="<?= $user[0]['tanggal_lahir'] ?>" required>
                     </div> -->
                     <div class="form-group col-md-12">
                         <label for="tentang">Tentang Perusahaan:</label>
-                        <textarea class="form-control" rows="3" id="astentangal" name="tentang_perusahaan" value="<?= $user[0]['asal_sekolah'] ?>" placeholder="SMK Mahardhika Batujajar" required></textarea>
+                        <textarea class="form-control" rows="3" id="tentang" name="tentang_perusahaan"
+                            placeholder="SMK Mahardhika Batujajar" required><?= $user[0]['tentang_perusahaan'] ?></textarea>
                     </div>
                     <div class="form-group col-md-12">
                         <label for="alamat_per">Alamat Perusahaan:</label>
-                        <textarea class="form-control" rows="3" id="alamat_per" name="alamat_perusahaan
-                        " value="<?= $user[0]['asal_sekolah'] ?>" placeholder="SMK Mahardhika Batujajar" required></textarea>
+                        <textarea class="form-control" rows="3" id="alamat_per" name="alamat_perusahaan"
+                            placeholder="SMK Mahardhika Batujajar"
+                            required><?= $user[0]['alamat_perusahaan'] ?></textarea>
                     </div>
                     <!-- <div class="form-group col-md-4">
                         <label for="usia">Usia:</label>
@@ -136,7 +146,9 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                <span>Copyright &copy; BKK SMK Mahardhika <?= date("Y") ?></span>
+                <span>Copyright &copy; BKK SMK Mahardhika
+                    <?= date("Y") ?>
+                </span>
             </div>
         </div>
     </footer>
@@ -148,7 +160,8 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -191,7 +204,7 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
     <!-- Custom Script -->
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             let dataform = $('#editdata');
 
             $('#tgl').datepicker({
@@ -200,12 +213,12 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                 todayHighlight: true
             });
 
-            $('#submit').click(function() {
+            $('#submit').click(function () {
                 $.ajax({
                     url: 'proses_edit_data',
                     type: 'POST',
                     data: dataform.serialize(),
-                    success: function(data) {
+                    success: function (data) {
                         if (data == 'success') {
                             swal.fire({
                                 icon: 'success',

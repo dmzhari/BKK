@@ -4,7 +4,7 @@ include '../inc/function.default.php';
 
 cek_session('id_partner', 'partner', '../user/login');
 
-$id   = $_SESSION['id_partner'];
+$id = $_SESSION['id_partner'];
 $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
 ?>
@@ -23,7 +23,9 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url() ?>css/sb-admin-2.min.css" rel="stylesheet">
@@ -51,11 +53,18 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
                 <div class="col-md-4 mb-4">
                     <div class="card shadow">
-                        <img class="card-img-top img-fluid px-3 px-sm-4 mt-3 mb-4" src="<?= base_url() ?>img/<?= $user[0]['foto'] ?>" alt="Foto <?= $user[0]['username'] ?>">
+                        <img class="card-img-top img-fluid px-3 px-sm-4 mt-3 mb-4"
+                            src="<?= base_url() ?>img/<?= $user[0]['foto_perusahaan'] ?>"
+                            alt="Foto <?= $user[0]['username'] ?>">
                         <div class="card-body text-center">
-                            <h5 class="card-title text-uppercase"><?= $user[0]['nama_lengkap'] ?></h5>
-                            <p class="card-text text-capitalize"><?= $user[0]['level'] ?></p>
-                            <a class="btn btn-sm btn-success form-control" href="#" data-toggle="modal" data-target="#uploadModal">
+                            <h5 class="card-title text-uppercase">
+                                <?= $user[0]['nama_perusahaan'] ?>
+                            </h5>
+                            <p class="card-text text-capitalize">
+                                <?= $user[0]['level'] ?>
+                            </p>
+                            <a class="btn btn-sm btn-success form-control" href="#" data-toggle="modal"
+                                data-target="#uploadModal">
                                 Ganti Foto
                             </a>
                         </div>
@@ -64,16 +73,19 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                 <div class="col-md-8 mb-4">
                     <div class="card card-body">
                         <div class="form-group">
-                            <label for="nickname">Nama Lengkap</label>
-                            <input class="form-control text-capitalize" id="nickname" type="text" value="<?= $user[0]['nama_lengkap'] ?>" disabled>
+                            <label for="nickname">Nama Lengkap Perusahaan</label>
+                            <input class="form-control text-capitalize" id="nickname" type="text"
+                                value="<?= $user[0]['nama_perusahaan'] ?>" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="tgl">Tempat, Tgl Lahir</label>
-                            <input class="form-control" type="text" id="tgl" value="<?= $user[0]['tempat_lahir'] ?>, <?= $user[0]['tanggal_lahir'] ?>" disabled>
+                            <label for="tgl">Alamat Perusahaan</label>
+                            <input class="form-control" type="text" id="tgl"
+                                value="<?= $user[0]['alamat_perusahaan'] ?>" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="nik">NIK</label>
-                            <input class="form-control" type="text" id="nik" value="<?= $user[0]['nik'] ?>" disabled>
+                            <label for="nik">Tentang Perusahaan</label>
+                            <input class="form-control" type="text" id="nik"
+                                value="<?= $user[0]['tentang_perusahaan'] ?>" disabled>
                         </div>
                         <div class="form-group">
                             <label for="nowa">No Whatsapp</label>
@@ -95,7 +107,9 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                <span>Copyright &copy; BKK SMK Mahardhika <?= date("Y") ?></span>
+                <span>Copyright &copy; BKK SMK Mahardhika
+                    <?= date("Y") ?>
+                </span>
             </div>
         </div>
     </footer>
@@ -107,7 +121,8 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     </a>
 
     <!-- Upload Foto Modal-->
-    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -131,7 +146,8 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     </div>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -170,13 +186,13 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        $(document).ready(function() {
-            $(".custom-file-input").on("change", function() {
+        $(document).ready(function () {
+            $(".custom-file-input").on("change", function () {
                 let fileName = $(this).val().split("\\").pop();
                 $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
             });
 
-            $('#sub').click(function() {
+            $('#sub').click(function () {
                 let foto = $('#file_foto').prop('files')[0];
                 let fd = new FormData();
 
@@ -190,7 +206,7 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                         cache: false,
                         processData: false,
                         contentType: false,
-                        success: function(data) {
+                        success: function (data) {
                             if (data == 'success') {
                                 swal.fire({
                                     icon: 'success',
