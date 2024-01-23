@@ -44,16 +44,17 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Upload Curriculum Vitae</h1>
+                <h1 class="h3 mb-0 text-gray-800">Upload Dokumen Perusahaan</h1>
             </div>
 
             <!-- Content Row -->
             <div class="row">
 
-                <div class="col-md-12">
+                <div class="col-md-4 offset-md-1">
                     <div class="card card-body shadow">
+                        <h5>Upload Gambar Dokumen</h5>
                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4 col-md-3 offset-md-4" width="200px"
-                            src="<?= base_url() ?>/img/cv/<?= $user[0]['cv'] ?>">
+                            src="<?= base_url() ?>/img/dokumen_pers/<?= $user[0]['foto_perusahaan'] ?>">
                         <p>*File harus bertipe jpg, jpeg, png</p>
                         <div class="custom-file mb-3">
                             <input type="file" class="custom-file-input" id="cv" name="myimage">
