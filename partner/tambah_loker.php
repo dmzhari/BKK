@@ -6,6 +6,7 @@ cek_session('id_partner', 'partner', '../user/login');
 
 $id = $_SESSION['id_partner'];
 $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +30,8 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     <!-- Custom styles for this template-->
     <link href="<?= base_url() ?>css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Datepicker -->
+    <link rel="stylesheet" href="vendor/datepicker/css/bootstrap-datepicker.min.css">
 </head>
 
 <body id="page-top">
@@ -44,27 +47,46 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Upload Dokumen Perusahaan</h1>
+                <h1 class="h3 mb-0 text-gray-800">Tambah Data Loker</h1>
             </div>
 
             <!-- Content Row -->
-            <div class="row">
-
-                <div class="col-md-4 offset-md-1">
-                    <div class="card card-body shadow">
-                        <h5>Upload Gambar Dokumen</h5>
-                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4 col-md-3 offset-md-4" width="200px"
-                            src="<?= base_url() ?>/img/dokumen_pers/<?= $user[0]['foto_perusahaan'] ?>">
-                        <p>*File harus bertipe jpg, jpeg, png</p>
-                        <div class="custom-file mb-3">
-                            <input type="file" class="custom-file-input" id="cv" name="myimage">
-                            <label class="custom-file-label" for="cv">Upload File</label>
-                        </div>
-                        <button class="btn btn-primary form-control" id="submit">Submit</button>
+            <form id="editdata">
+                <div class="row">
+                    <input type="hidden" name="id_user" value="<?= $id ?>">
+                    <div class="form-group col-md-4">
+                        <label for="judul_loker">Judul Loker:</label>
+                        <input type="text" class="form-control" id="judul_loker" name="judul_loker"
+                            placeholder="Dibutuhkan Mekanik di Cimahi" required>
                     </div>
+                    <div class="form-group col-md-4">
+                        <label for="posisi_loker">Posisi Yang Dibutuhkan</label>
+                        <input type="text" class="form-control" id="posisi_loker" name="posisi_loker"
+                            placeholder="Mekanik, Admin Produksi" required>
+                    </div>
+                    <div class="form-group col-md-4 ">
+                        <label for="penempatan">Penempatan Loker:</label>
+                        <input type="text" class="form-control" id="penempatan" placeholder="Bandung, Cimahi" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="file_foto">Upload Foto Pengumuman:</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="file_foto">
+                            <label class="custom-file-label" for="file_foto">Upload Foto</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="syarat_job">Syarat Yang Dibutuhkan:</label>
+                        <textarea class="form-control" rows="5" id="syarat_job" placeholder="Good Attitude"
+                            required></textarea>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="tanggal_kadaluarsa">Tanggal Kadaluarsa:</label>
+                        <input class="form-control" rows="3" id="tanggal_kadaluarsa" required></input>
+                    </div>
+                    <button type="button" id="submit" class="btn btn-primary form-control">Submit</button>
                 </div>
-
-            </div>
+            </form>
 
         </div>
         <!-- /.container-fluid -->
@@ -119,6 +141,9 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     <!-- Custom scripts for all pages-->
     <script src="<?= base_url() ?>js/sb-admin-2.min.js"></script>
 
+    <!-- Sweet2Alert JS -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Page level plugins
     <script src="<?= base_url() ?>vendor/chart.js/Chart.min.js"></script>
 
@@ -126,9 +151,10 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     <script src="<?= base_url() ?>js/demo/chart-area-demo.js"></script>
     <script src="<?= base_url() ?>js/demo/chart-pie-demo.js"></script> -->
 
-    <!-- Sweet2Alert JS -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Datepicker -->
+    <script src="<?= base_url() ?>vendor/datepicker/js/bootstrap-datepicker.min.js"></script>
 
+    <!-- Custom Script -->
     <script>
         $(document).ready(function () {
             $(".custom-file-input").on("change", function () {
@@ -136,55 +162,46 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                 $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
             });
 
-            $('#submit').click(function () {
-                let cv = $('#cv').prop('files')[0];
-                let fd = new FormData();
 
-                if (cv != undefined) {
-                    fd.append("file", cv);
-                    fd.append("path", 'cv/');
-                    fd.append("act", 'cv');
-
-                    $.ajax({
-                        url: 'proses_upload_file',
-                        method: 'POST',
-                        data: fd,
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        success: function (data) {
-                            if (data == 'success') {
-                                swal.fire({
-                                    icon: 'success',
-                                    title: 'Upload Berhasil!'
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        window.location.reload();
-                                    }
-                                });
-                            } else if (data == 'file not image') {
-                                swal.fire({
-                                    icon: 'error',
-                                    title: 'File Harus Bertipe Gambar!'
-                                });
-                            } else {
-                                swal.fire({
-                                    icon: 'warning',
-                                    title: 'Upload Gagal!'
-                                });
-                            }
-                        }
-                    });
-                } else {
-                    swal.fire({
-                        icon: 'warning',
-                        title: 'File Belum Di Upload!'
-                    });
-                }
+            $('#tanggal_kadaluarsa').datepicker({
+                format: "yyyy-mm-dd",
+                autoclose: true,
+                todayHighlight: true,
+                todayBtn: true,
+                startDate: new Date(),
             });
-        });
-    </script>
 
+            $('#submit').click(function () {
+                let fd = new FormData();
+                fd.append("foto_pengumuman", $('#file_foto').prop('files')[0]);
+                fd.append("judul_loker", $('#judul_loker').val());
+                fd.append("posisi_loker", $('#posisi_loker').val());
+                fd.append("penempatan_job", $('#penempatan').val());
+                fd.append("syarat_job", $('#syarat_job').val());
+                fd.append("tanggal_kadaluarsa", $('#tanggal_kadaluarsa').val());
+                fd.append("act", "tambah_data");
+                fd.append("path", "foto_loker/")
+
+                $.ajax({
+                    url: 'proses_loker',
+                    type: 'POST',
+                    data: fd,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if (data == 'success') {
+                            swal.fire({
+                                icon: 'success',
+                                title: 'Data Berhasil Ditambah'
+                            });
+                            window.location.reload()
+                        }
+                    }
+                });
+            })
+        })
+    </script>
 </body>
 
 </html>

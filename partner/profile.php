@@ -92,8 +92,6 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                             <input class="form-control" type="text" id="nowa" value="<?= $user[0]['nowa'] ?>" disabled>
                         </div>
                         <a class="btn btn-sm btn-primary form-control mb-3" href="edit_data_profile.php">Edit Data</a>
-                        <a class="btn btn-sm btn-success form-control" href="upload_dokumen.php">Upload Dokumen
-                            Perusahaan</a>
                     </div>
                 </div>
             </div>

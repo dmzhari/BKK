@@ -4,9 +4,11 @@ include '../inc/function.default.php';
 
 cek_session('id_partner', 'partner', '../user/login');
 
-$id   = $_SESSION['id_partner'];
+$id = $_SESSION['id_partner'];
 $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
-
+$member = myquery("SELECT * FROM tb_client");
+$partner = myquery("SELECT * FROM tb_partner");
+$dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,11 +21,13 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     <meta name="description" content="BKK SMK Mahardhika Batujajar">
     <meta name="author" content="dmzhari">
 
-    <title>User Dashboard</title>
+    <title>Partner Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url() ?>css/sb-admin-2.min.css" rel="stylesheet">
@@ -44,7 +48,7 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Selamat Datang User Dashboard</h1>
+                <h1 class="h3 mb-0 text-gray-800">Selamat Datang Partner Dashboard</h1>
             </div>
 
             <!-- Content Row -->
@@ -57,8 +61,10 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                        Loker</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
+                                        Loker Anda</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?= count($dataloker) ?>
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -75,8 +81,10 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                        Member</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
+                                        Total Member</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?= count($member) ?>
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -93,8 +101,10 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                        Partner</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
+                                        Total Partner</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?= count($partner) ?>
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-building fa-2x text-gray-300"></i>
@@ -116,7 +126,8 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                         </div>
                         <div class="card-body">
                             <div class="text-center">
-                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="img/logo_bkk.jpeg" alt="Logo BKK SMK Mahardhika">
+                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;"
+                                    src="img/logo_bkk.jpeg" alt="Logo BKK SMK Mahardhika">
                             </div>
                             <p>BKK Mahardhika adalah Bursa Kerja Khusus (BKK) yang didirikan untuk alumni-alumni
                                 atau fresh graduate yang sedang membutuhkan lowongan pekerjaan</p>
@@ -150,7 +161,9 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                <span>Copyright &copy; BKK SMK Mahardhika <?= date("Y") ?></span>
+                <span>Copyright &copy; BKK SMK Mahardhika
+                    <?= date("Y") ?>
+                </span>
             </div>
         </div>
     </footer>
@@ -168,7 +181,8 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

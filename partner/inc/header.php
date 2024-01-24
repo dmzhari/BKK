@@ -29,9 +29,9 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="info_loker.php">
+        <a class="nav-link" href="loker">
             <i class="fas fa-fw fa-bullhorn"></i>
-            <span>Info Loker</span>
+            <span>Loker</span>
         </a>
     </li>
 
@@ -45,7 +45,7 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="profile.php">
+        <a class="nav-link" href="profile">
             <i class="fas fa-fw fa-user"></i>
             <span>Profile</span>
         </a>
@@ -53,7 +53,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="contact.php">
+        <a class="nav-link" href="contact">
             <i class="fas fa-fw fa-comments"></i>
             <span>Contact Service BKK</span></a>
     </li>

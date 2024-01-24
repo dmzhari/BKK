@@ -6,6 +6,7 @@ cek_session('id_partner', 'partner', '../user/login');
 
 $id = $_SESSION['id_partner'];
 $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
+$dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = " . $conn->real_escape_string($_GET['id']));
 
 ?>
 <!DOCTYPE html>
@@ -47,44 +48,45 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Edit Data Profile</h1>
+                <h1 class="h3 mb-0 text-gray-800">Edit Data Loker</h1>
             </div>
 
             <!-- Content Row -->
             <form id="editdata">
                 <div class="row">
                     <input type="hidden" name="id_user" value="<?= $id ?>">
-                    <div class="form-group col-md-3">
-                        <label for="username">Username:</label>
-                        <input type="text" class="form-control" id="username" name="username"
-                            value="<?= $user[0]['username'] ?>" placeholder="smkmahardhika" required>
+                    <div class="form-group col-md-4">
+                        <label for="judul_loker">Judul Loker:</label>
+                        <input type="text" class="form-control" id="judul_loker" name="judul_loker"
+                            placeholder="Dibutuhkan Mekanik di Cimahi" value="<?= $dataloker[0]['judul_loker'] ?>"
+                            required>
                     </div>
-                    <div class="form-group col-md-3">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" name="email"
-                            value="<?= $user[0]['email'] ?>" placeholder="example@example.com" required>
+                    <div class="form-group col-md-4">
+                        <label for="posisi_loker">Posisi Yang Dibutuhkan</label>
+                        <input type="text" class="form-control" id="posisi_loker" name="posisi_loker"
+                            placeholder="Mekanik, Admin Produksi" value="<?= $dataloker[0]['posisi_loker'] ?>" required>
                     </div>
-                    <div class="form-group col-md-3">
-                        <label for="nama_lengkap">Nama Lengkap Perusahaan:</label>
-                        <input type="text" class="form-control" id="nama_lengkap" name="nama_perusahaan"
-                            value="<?= $user[0]['nama_perusahaan'] ?>" placeholder="PT. Mahardhika Sejahtera" required>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="nowa">No Telp Office / WA:</label>
-                        <input type="text" class="form-control" id="nowa" name="nowa" value="<?= $user[0]['nowa'] ?>"
-                            placeholder="0838xxxxxx" required>
+                    <div class="form-group col-md-4 ">
+                        <label for="penempatan">Penempatan Loker:</label>
+                        <input type="text" class="form-control" id="penempatan" placeholder="Bandung, Cimahi"
+                            value="<?= $dataloker[0]['penempatan_job'] ?>" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="tentang">Tentang Perusahaan:</label>
-                        <textarea class="form-control" rows="3" id="tentang" name="tentang_perusahaan"
-                            placeholder="SMK Mahardhika Batujajar"
-                            required><?= $user[0]['tentang_perusahaan'] ?></textarea>
+                        <label for="file_foto">Upload Foto Pengumuman:</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="file_foto">
+                            <label class="custom-file-label" for="file_foto">Upload Foto</label>
+                        </div>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="alamat_per">Alamat Perusahaan:</label>
-                        <textarea class="form-control" rows="3" id="alamat_per" name="alamat_perusahaan"
-                            placeholder="SMK Mahardhika Batujajar"
-                            required><?= $user[0]['alamat_perusahaan'] ?></textarea>
+                        <label for="syarat_job">Syarat Yang Dibutuhkan:</label>
+                        <textarea class="form-control" rows="5" id="syarat_job" placeholder="Good Attitude"
+                            required><?= $dataloker[0]['syarat_job'] ?></textarea>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="tanggal_kadaluarsa">Tanggal Kadaluarsa:</label>
+                        <input class="form-control" rows="3" id="tanggal_kadaluarsa"
+                            value="<?= $dataloker[0]['tanggal_kadaluarsa'] ?>" required></input>
                     </div>
                     <button type="button" id="submit" class="btn btn-primary form-control">Submit</button>
                 </div>
@@ -159,26 +161,51 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
     <!-- Custom Script -->
     <script>
         $(document).ready(function () {
-            let dataform = $('#editdata');
+            $(".custom-file-input").on("change", function () {
+                let fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
 
-            $('#tgl').datepicker({
+            $('#tanggal_kadaluarsa').datepicker({
                 format: "yyyy-mm-dd",
                 autoclose: true,
-                todayHighlight: true
+                todayHighlight: true,
+                todayBtn: true,
+                startDate: new Date(),
             });
 
             $('#submit').click(function () {
+                if ($('#file_foto').prop('files')[0] === undefined) {
+                    swal.fire({
+                        icon: 'error',
+                        text: 'File Belum di Upload'
+                    });
+                }
+                let fd = new FormData();
+                fd.append("foto_pengumuman", $('#file_foto').prop('files')[0]);
+                fd.append("judul_loker", $('#judul_loker').val());
+                fd.append("posisi_loker", $('#posisi_loker').val());
+                fd.append("penempatan_job", $('#penempatan').val());
+                fd.append("syarat_job", $('#syarat_job').val());
+                fd.append("tanggal_kadaluarsa", $('#tanggal_kadaluarsa').val());
+                fd.append("act", "edit_data");
+                fd.append("id", <?= $dataloker[0]['id_loker'] ?>)
+                fd.append("path", "foto_loker/")
+
                 $.ajax({
-                    url: 'proses_edit_data',
+                    url: 'proses_loker',
                     type: 'POST',
-                    data: dataform.serialize(),
+                    data: fd,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
                     success: function (data) {
                         if (data == 'success') {
                             swal.fire({
                                 icon: 'success',
                                 title: 'Data Berhasil Dirubah'
                             });
-                            window.location.reload();
+                            window.location.reload()
                         }
                     }
                 });
