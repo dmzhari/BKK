@@ -69,7 +69,7 @@ $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
                         <input type="text" class="form-control" id="penempatan" placeholder="Bandung, Cimahi" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="file_foto">Upload Foto Pengumuman:</label>
+                        <label for="file_foto">Upload Foto Browsur:</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="file_foto">
                             <label class="custom-file-label" for="file_foto">Upload Foto</label>

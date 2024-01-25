@@ -63,7 +63,7 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = " . $conn->real_es
                     </div>
                     <div class="form-group col-md-4">
                         <label for="posisi_loker">Posisi Yang Dibutuhkan</label>
-                        <input type="text" class="form-control" id="posisi_loker" name="posisi_loker"
+                        <input type="text" class="form-control text-capitalize" id="posisi_loker" name="posisi_loker"
                             placeholder="Mekanik, Admin Produksi" value="<?= $dataloker[0]['posisi_loker'] ?>" required>
                     </div>
                     <div class="form-group col-md-4 ">
