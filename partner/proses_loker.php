@@ -10,10 +10,10 @@ $penempatan_job = $conn->real_escape_string($_POST['penempatan_job']);
 $syarat_job = $conn->real_escape_string($_POST['syarat_job']);
 $tanggal_kadaluarsa = $conn->real_escape_string($_POST['tanggal_kadaluarsa']);
 $id_user = $_SESSION['id_partner'];
-$path = empty($_POST['path']) ? null : $_POST['path'];
+$path = empty($_POST['path']) ? null : $conn->real_escape_string($_POST['path']);
 $image_ext = array('jpg', 'jpeg', 'png');
 $ext = end(explode('.', addslashes(htmlspecialchars(trim($_FILES['foto_pengumuman']['name'])))));
-$id_loker = $conn->real_escape_string($_POST['id']);
+$id_loker = intval($conn->real_escape_string($_POST['id']));
 $act = $conn->real_escape_string($_POST['act']);
 
 if ($act == 'tambah_data') {
@@ -50,7 +50,7 @@ if ($act == 'tambah_data') {
     }
 } else {
     if (isset($_GET['id'])) {
-        $id = $conn->real_escape_string($_GET['id']);
+        $id = intval($conn->real_escape_string($_GET['id']));
         $sql = "DELETE FROM tb_loker WHERE id_loker = '$id'";
         $deletefile = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id'");
         if ($conn->query($sql)) {

@@ -6,7 +6,7 @@ cek_session('id_partner', 'partner', '../user/login');
 
 $id = $_SESSION['id_partner'];
 $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
-$dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = " . $conn->real_escape_string($_GET['id']));
+$dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = " . intval($conn->real_escape_string($_GET['id'])));
 
 ?>
 <!DOCTYPE html>
