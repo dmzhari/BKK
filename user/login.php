@@ -1,6 +1,11 @@
 <?php
 include '../inc/function.database.php';
 include '../inc/function.default.php';
+
+if (!empty($_SESSION)) {
+    header("Location: " . (isset($_SESSION['client']) ? "./user/" : "../partner"));
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +26,9 @@ include '../inc/function.default.php';
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url() ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url() ?>css/sb-admin-2.css" rel="stylesheet">
@@ -49,10 +56,12 @@ include '../inc/function.default.php';
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="email" aria-describedby="emailHelp" placeholder="Masukan Akun Email">
+                                            <input type="email" class="form-control form-control-user" id="email"
+                                                aria-describedby="emailHelp" placeholder="Masukan Akun Email">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="password" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" id="password"
+                                                placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <select id="level" class="form-control" required>
@@ -103,7 +112,7 @@ include '../inc/function.default.php';
     <script src="<?= base_url() ?>js/sb-admin-2.min.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             let errno = $(location).attr('href');
             if (errno.split('?')[1] == 'logout') {
                 swal.fire({
@@ -112,7 +121,7 @@ include '../inc/function.default.php';
                 });
             }
 
-            $('#showpass').click(function(e) {
+            $('#showpass').click(function (e) {
                 if ($(this).is(':checked')) {
                     $('#password').attr('type', 'text');
                 } else {
@@ -120,7 +129,7 @@ include '../inc/function.default.php';
                 }
             });
 
-            $('#submit').click(function() {
+            $('#submit').click(function () {
                 let email = $('#email').val();
                 let password = $('#password').val();
                 let level = $('#level').val();
@@ -133,7 +142,7 @@ include '../inc/function.default.php';
                         "password": password,
                         "level": level
                     },
-                    success: function(respone) {
+                    success: function (respone) {
                         if (respone == 'no data') {
                             swal.fire({
                                 icon: 'error',

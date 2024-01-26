@@ -14,7 +14,7 @@ function cek_session($id, $level, $location)
 {
     if (!isset($_SESSION[$id]) && isset($_SESSION['level']) !== $level) {
         echo "<script>alert('Hayo mau ngapain :D'); window.location.href='$location';</script>";
-        exit();
+        die();
     }
 }
 
