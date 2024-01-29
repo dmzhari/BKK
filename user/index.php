@@ -6,7 +6,9 @@ cek_session('id_client', 'client', 'login.php');
 
 $id = $_SESSION['id_client'];
 $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
-
+$member = myquery("SELECT * FROM tb_client");
+$partner = myquery("SELECT * FROM tb_partner");
+$dataloker = myquery("SELECT * FROM tb_loker");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,8 +61,10 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                        Loker</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
+                                        Total Loker</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?= count($dataloker) ?>
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -77,8 +81,10 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                        Member</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
+                                        Total Member Saat Ini</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?= count($member) ?>
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -94,8 +100,10 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                        Partner</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
+                                        Total Perusahaan</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?= count($partner) ?>
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-building fa-2x text-gray-300"></i>

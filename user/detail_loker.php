@@ -2,11 +2,12 @@
 include '../inc/function.database.php';
 include '../inc/function.default.php';
 
-cek_session('id_partner', 'partner', '../user/login');
+cek_session('id_client', 'client', 'login.php');
 
-$id = $_SESSION['id_partner'];
-$user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
-$dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
+$id = $_SESSION['id_client'];
+$id_loker = intval($conn->real_escape_string($_GET['id']));
+$user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
+$dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +33,7 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
 
     <!-- Datatables -->
     <link rel="stylesheet" href="<?= base_url() ?>vendor/datatables/dataTables.bootstrap4.min.css">
+
 </head>
 
 <body id="page-top">
@@ -46,61 +48,56 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Menu Loker BKK</h1>
+                <h1 class="h3 mb-0 text-gray-800">Detail Loker BKK</h1>
             </div>
 
             <!-- Content Row -->
             <div class="row">
 
-                <div class="col-md-12 mb-4">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Data Loker</h6>
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow">
+                        <div class="card-header text-center pb-0">
+                            <h5>Foto Brosur</h5>
                         </div>
-                        <div class="card-body">
-                            <a class="btn btn-md btn-primary mb-3" href="tambah_loker">Tambah Loker</a>
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Judul Loker</th>
-                                            <th>Posisi Yang Dibutuhkan</th>
-                                            <th>Penempatan</th>
-                                            <th>Expired</th>
-                                            <th>Opsi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($dataloker as $loker) { ?>
-                                            <tr>
-                                                <td>
-                                                    <a href="detail_loker?id=<?= $loker['id_loker'] ?>"
-                                                        class="d-inline-block text-decoration-none text-truncate"
-                                                        style="max-width: 250px;">
-                                                        <?= $loker['judul_loker'] ?>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <?= $loker['posisi_loker'] ?>
-                                                </td>
-                                                <td>
-                                                    <?= $loker['penempatan_job'] ?>
-                                                </td>
-                                                <td>
-                                                    <?= $loker['tanggal_kadaluarsa'] ?>
-                                                </td>
-                                                <td>
-                                                    <a href="proses_loker?id=<?= $loker['id_loker'] ?>"
-                                                        class="btn btn-sm btn-danger">Hapus Loker</a>
-                                                    <a href="edit_loker?id=<?= $loker['id_loker'] ?>"
-                                                        class="btn btn-sm btn-success">Edit Loker</a>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <img class="card-img-top img-fluid px-3 px-sm-4 mt-3 mb-4"
+                            src="<?= base_url(false, 'bkk') ?>/partner/img/foto_loker/<?= $dataloker[0]['foto_pengumuman'] ?>"
+                            alt="Foto Brosur">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-uppercase">
+                                Tanggal Kadaluarsa Loker
+                            </h5>
+                            <p class="card-text text-capitalize">
+                                <?= $dataloker[0]['tanggal_kadaluarsa'] ?>
+                            </p>
                         </div>
+                    </div>
+                </div>
+                <div class="col-md-8 mb-4">
+                    <div class="card card-body">
+                        <div class="form-group text-center">
+                            <h5>
+                                <?= $dataloker[0]['judul_loker'] ?>
+                            </h5>
+                            <hr>
+                        </div>
+                        <div class="form-group">
+                            <label for="posisi">Posisi Yang Dibutuhkan</label>
+                            <p class="form-control text-capitalize" id="posisi">
+                                <?= $dataloker[0]['posisi_loker'] ?>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="penempatan">Penempatan Job</label>
+                            <p class="form-control text-capitalize" id="penempatan">
+                                <?= $dataloker[0]['penempatan_job'] ?>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="syarat_job">Persyaratan / Deskripsi Job</label>
+                            <textarea class="form-control text-capitalize" rows="5" id="syarat_job"
+                                disabled><?= $dataloker[0]['syarat_job'] ?></textarea>
+                        </div>
+                        <a class="btn btn-sm btn-primary form-control mb-3" href="#">ACCEPT LOKER</a>
                     </div>
                 </div>
             </div>
@@ -165,7 +162,6 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
     <script src="<?= base_url() ?>js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <!-- <script src="<?= base_url() ?>vendor/chart.js/Chart.min.js"></script> -->
     <script src="<?= base_url() ?>vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= base_url() ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
@@ -174,18 +170,6 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
 
     <!-- Sweet2Alert JS -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script>
-        $(document).ready(function () {
-            let param = window.location.href;
-            if (param.split('?')[1] == 'hapus') {
-                swal.fire({
-                    icon: 'success',
-                    title: 'Data Berhasil Dihapus'
-                });
-            }
-        });
-    </script>
 </body>
 
 </html>

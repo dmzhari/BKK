@@ -72,7 +72,7 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = " . intval($conn->
                             value="<?= $dataloker[0]['penempatan_job'] ?>" required>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="file_foto">Upload Foto Pengumuman:</label>
+                        <label for="file_foto">Upload Foto Brosur:</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="file_foto">
                             <label class="custom-file-label" for="file_foto">Upload Foto</label>

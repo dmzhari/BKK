@@ -3,7 +3,7 @@ include '../inc/function.database.php';
 include '../inc/function.default.php';
 
 if (!empty($_SESSION)) {
-    header("Location: " . (isset($_SESSION['client']) ? "./user/" : "../partner"));
+    header("Location: " . (isset($_SESSION['level']) == 'client' ? "../user" : "../partner"));
 }
 
 ?>

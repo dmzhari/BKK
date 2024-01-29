@@ -2,11 +2,11 @@
 include '../inc/function.database.php';
 include '../inc/function.default.php';
 
-cek_session('id_partner', 'partner', '../user/login');
+cek_session('id_client', 'client', 'login.php');
 
-$id = $_SESSION['id_partner'];
-$user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
-$dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
+$id = $_SESSION['id_client'];
+$user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
+$dataloker = myquery("SELECT * FROM tb_loker");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +46,7 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Menu Loker BKK</h1>
+                <h1 class="h3 mb-0 text-gray-800">Data Loker BKK</h1>
             </div>
 
             <!-- Content Row -->
@@ -58,7 +58,6 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
                             <h6 class="m-0 font-weight-bold text-primary">Data Loker</h6>
                         </div>
                         <div class="card-body">
-                            <a class="btn btn-md btn-primary mb-3" href="tambah_loker">Tambah Loker</a>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -74,11 +73,10 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
                                         <?php foreach ($dataloker as $loker) { ?>
                                             <tr>
                                                 <td>
-                                                    <a href="detail_loker?id=<?= $loker['id_loker'] ?>"
-                                                        class="d-inline-block text-decoration-none text-truncate"
+                                                    <p class="d-inline-block text-decoration-none text-truncate"
                                                         style="max-width: 250px;">
                                                         <?= $loker['judul_loker'] ?>
-                                                    </a>
+                                                    </p>
                                                 </td>
                                                 <td>
                                                     <?= $loker['posisi_loker'] ?>
@@ -90,10 +88,8 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
                                                     <?= $loker['tanggal_kadaluarsa'] ?>
                                                 </td>
                                                 <td>
-                                                    <a href="proses_loker?id=<?= $loker['id_loker'] ?>"
-                                                        class="btn btn-sm btn-danger">Hapus Loker</a>
-                                                    <a href="edit_loker?id=<?= $loker['id_loker'] ?>"
-                                                        class="btn btn-sm btn-success">Edit Loker</a>
+                                                    <a href="detail_loker?id=<?= $loker['id_loker'] ?>"
+                                                        class="btn btn-sm btn-primary">Detail Loker</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -172,20 +168,6 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
-    <!-- Sweet2Alert JS -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script>
-        $(document).ready(function () {
-            let param = window.location.href;
-            if (param.split('?')[1] == 'hapus') {
-                swal.fire({
-                    icon: 'success',
-                    title: 'Data Berhasil Dihapus'
-                });
-            }
-        });
-    </script>
 </body>
 
 </html>
