@@ -53,42 +53,39 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = " . intval($conn->
 
             <!-- Content Row -->
             <form id="editdata">
-                <div class="row">
-                    <input type="hidden" name="id_user" value="<?= $id ?>">
-                    <div class="form-group col-md-4">
-                        <label for="judul_loker">Judul Loker:</label>
-                        <input type="text" class="form-control" id="judul_loker" name="judul_loker"
-                            placeholder="Dibutuhkan Mekanik di Cimahi" value="<?= $dataloker[0]['judul_loker'] ?>"
-                            required>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="posisi_loker">Posisi Yang Dibutuhkan</label>
-                        <input type="text" class="form-control text-capitalize" id="posisi_loker" name="posisi_loker"
-                            placeholder="Mekanik, Admin Produksi" value="<?= $dataloker[0]['posisi_loker'] ?>" required>
-                    </div>
-                    <div class="form-group col-md-4 ">
-                        <label for="penempatan">Penempatan Loker:</label>
-                        <input type="text" class="form-control" id="penempatan" placeholder="Bandung, Cimahi"
-                            value="<?= $dataloker[0]['penempatan_job'] ?>" required>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="file_foto">Upload Foto Brosur:</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="file_foto">
-                            <label class="custom-file-label" for="file_foto">Upload Foto</label>
+                <div class="card card-body">
+                    <div class="row">
+                        <input type="hidden" name="id_user" value="<?= $id ?>">
+                        <div class="form-group col-md-4">
+                            <label for="judul_loker">Judul Loker:</label>
+                            <input type="text" class="form-control" id="judul_loker" name="judul_loker"
+                                placeholder="Dibutuhkan Mekanik di Cimahi" value="<?= $dataloker[0]['judul_loker'] ?>"
+                                required>
                         </div>
+                        <div class="form-group col-md-4">
+                            <label for="posisi_loker">Posisi Yang Dibutuhkan</label>
+                            <input type="text" class="form-control text-capitalize" id="posisi_loker"
+                                name="posisi_loker" placeholder="Mekanik, Admin Produksi"
+                                value="<?= $dataloker[0]['posisi_loker'] ?>" required>
+                        </div>
+                        <div class="form-group col-md-4 ">
+                            <label for="penempatan">Penempatan Loker:</label>
+                            <input type="text" class="form-control" id="penempatan" placeholder="Bandung, Cimahi"
+                                value="<?= $dataloker[0]['penempatan_job'] ?>" required>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="syarat_job">Syarat Yang Dibutuhkan:</label>
+                            <textarea class="form-control" rows="5" id="syarat_job" placeholder="Good Attitude"
+                                required><?= $dataloker[0]['syarat_job'] ?></textarea>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="tanggal_kadaluarsa">Tanggal Kadaluarsa:</label>
+                            <input class="form-control" rows="3" id="tanggal_kadaluarsa"
+                                value="<?= $dataloker[0]['tanggal_kadaluarsa'] ?>" required></input>
+                        </div>
+                        <button type="button" id="submit" class="btn btn-success form-control mb-2">Submit</button>
+                        <a href="loker" class="btn btn-primary form-control">Kembali</a>
                     </div>
-                    <div class="form-group col-md-12">
-                        <label for="syarat_job">Syarat Yang Dibutuhkan:</label>
-                        <textarea class="form-control" rows="5" id="syarat_job" placeholder="Good Attitude"
-                            required><?= $dataloker[0]['syarat_job'] ?></textarea>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="tanggal_kadaluarsa">Tanggal Kadaluarsa:</label>
-                        <input class="form-control" rows="3" id="tanggal_kadaluarsa"
-                            value="<?= $dataloker[0]['tanggal_kadaluarsa'] ?>" required></input>
-                    </div>
-                    <button type="button" id="submit" class="btn btn-primary form-control">Submit</button>
                 </div>
             </form>
 
@@ -161,11 +158,6 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = " . intval($conn->
     <!-- Custom Script -->
     <script>
         $(document).ready(function () {
-            $(".custom-file-input").on("change", function () {
-                let fileName = $(this).val().split("\\").pop();
-                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-            });
-
             $('#tanggal_kadaluarsa').datepicker({
                 format: "yyyy-mm-dd",
                 autoclose: true,
@@ -175,14 +167,7 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = " . intval($conn->
             });
 
             $('#submit').click(function () {
-                if ($('#file_foto').prop('files')[0] === undefined) {
-                    swal.fire({
-                        icon: 'error',
-                        text: 'File Belum di Upload'
-                    });
-                }
                 let fd = new FormData();
-                fd.append("foto_pengumuman", $('#file_foto').prop('files')[0]);
                 fd.append("judul_loker", $('#judul_loker').val());
                 fd.append("posisi_loker", $('#posisi_loker').val());
                 fd.append("penempatan_job", $('#penempatan').val());
@@ -190,7 +175,6 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = " . intval($conn->
                 fd.append("tanggal_kadaluarsa", $('#tanggal_kadaluarsa').val());
                 fd.append("act", "edit_data");
                 fd.append("id", <?= $dataloker[0]['id_loker'] ?>)
-                fd.append("path", "foto_loker/")
 
                 $.ajax({
                     url: 'proses_loker',

@@ -63,6 +63,7 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>No</th>
                                             <th>Judul Loker</th>
                                             <th>Posisi Yang Dibutuhkan</th>
                                             <th>Penempatan</th>
@@ -71,8 +72,12 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $i = 1 ?>
                                         <?php foreach ($dataloker as $loker) { ?>
                                             <tr>
+                                                <td>
+                                                    <?= $i ?>
+                                                </td>
                                                 <td>
                                                     <a href="detail_loker?id=<?= $loker['id_loker'] ?>"
                                                         class="d-inline-block text-decoration-none text-truncate"

@@ -30,23 +30,30 @@ if ($act == 'tambah_data') {
         echo 'file not image';
     }
 } else if ($act == 'edit_data') {
-    $deletefile = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
-    unlink("./img/foto_loker/" . $deletefile[0]['foto_pengumuman']);
-    if (in_array($ext, $image_ext)) {
-        $name = md5(rand()) . '.' . $ext;
-        $location = "img/$path" . $name;
-        if (move_uploaded_file($_FILES["foto_pengumuman"]["tmp_name"], $location)) {
-            $sql = "UPDATE tb_loker SET judul_loker = '$judul_loker', posisi_loker = '$posisi_loker', 
+    if (empty($_FILES['foto_pengumuman'])) {
+        $sql = "UPDATE tb_loker SET judul_loker = '$judul_loker', posisi_loker = '$posisi_loker', 
             penempatan_job = '$penempatan_job', syarat_job = '$syarat_job', 
-            tanggal_kadaluarsa = '$tanggal_kadaluarsa', foto_pengumuman = '$name',
+            tanggal_kadaluarsa = '$tanggal_kadaluarsa',
             id_user = '$id_user' WHERE id_loker = '$id_loker'";
-            $conn->query($sql);
-            echo 'success';
-        } else {
-            echo 'failed';
-        }
+        $conn->query($sql);
+        echo 'success';
     } else {
-        echo 'file not image';
+        $deletefile = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
+        unlink("./img/foto_loker/" . $deletefile[0]['foto_pengumuman']);
+        if (in_array($ext, $image_ext)) {
+            $name = md5(rand()) . '.' . $ext;
+            $location = "img/$path" . $name;
+            if (move_uploaded_file($_FILES["foto_pengumuman"]["tmp_name"], $location)) {
+                $sql = "UPDATE tb_loker SET foto_pengumuman = '$name', 
+                id_user = '$id_user' WHERE id_loker = '$id_loker'";
+                $conn->query($sql);
+                echo 'success';
+            } else {
+                echo 'failed';
+            }
+        } else {
+            echo 'file not image';
+        }
     }
 } else {
     if (isset($_GET['id'])) {

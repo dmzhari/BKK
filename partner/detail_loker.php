@@ -68,6 +68,9 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
                             <p class="card-text text-capitalize">
                                 <?= $dataloker[0]['tanggal_kadaluarsa'] ?>
                             </p>
+                            <button class="btn btn-sm btn-primary form-control mb-3" type="button" data-toggle="modal"
+                                data-target="#gantibrosur">Ganti Foto
+                                Brosur</button>
                         </div>
                     </div>
                 </div>
@@ -95,8 +98,34 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
                             <textarea class="form-control text-capitalize" rows="5" id="syarat_job"
                                 disabled><?= $dataloker[0]['syarat_job'] ?></textarea>
                         </div>
-                        <a class="btn btn-sm btn-primary form-control mb-3" href="edit_loker?id=<?= $id_loker ?>">Edit
+                        <a class="btn btn-sm btn-success form-control mb-3" href="edit_loker?id=<?= $id_loker ?>">Edit
                             Data</a>
+                        <a class="btn btn-sm btn-primary form-control" href="loker">Kembali</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="gantibrosur" tabindex="-1" aria-labelledby="gantibrosurLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="gantibrosurLabel">Upload Foto Brosur</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="file_foto">
+                                <label class="custom-file-label" for="file_foto">Upload Foto</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" id="submit" class="btn btn-primary">Submit</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -169,6 +198,47 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
 
     <!-- Sweet2Alert JS -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".custom-file-input").on("change", function () {
+                let fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+
+            $("#submit").click(function () {
+                if ($('#file_foto').prop('files')[0] === undefined) {
+                    swal.fire({
+                        icon: 'error',
+                        text: 'File Belum di Upload'
+                    });
+                }
+                let fd = new FormData();
+                fd.append("foto_pengumuman", $('#file_foto').prop('files')[0]);
+                fd.append("act", "edit_data");
+                fd.append("id", <?= $dataloker[0]['id_loker'] ?>);
+                fd.append("path", "foto_loker/");
+
+                $.ajax({
+                    url: 'proses_loker',
+                    type: 'POST',
+                    data: fd,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if (data == 'success') {
+                            swal.fire({
+                                icon: 'success',
+                                title: 'Data Berhasil Dirubah'
+                            });
+                            window.location.reload()
+                        }
+                    }
+                });
+            });
+        })
+    </script>
 </body>
 
 </html>
