@@ -59,7 +59,7 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
                         </div>
                         <div class="card-body">
                             <a class="btn btn-md btn-primary mb-3" href="tambah_loker">Tambah Loker</a>
-                            <a class="btn btn-md btn-primary mb-3" href="cetak_loker">Print Loker</a>
+                            <a class="btn btn-md btn-primary mb-3" href="cetak_loker" target="_blank">Print Loker</a>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>

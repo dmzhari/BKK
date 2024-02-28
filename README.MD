@@ -17,12 +17,16 @@ composer install
   - Finish
 
 - Login User
-    - Partner
-        - Username  : partner@gmail.com
-        - Password  : partner990
-    - Client
-        - Username  : hari@gmail.com
-        - Password  : ecchi990
+  - Partner
+    - Username : partner@gmail.com
+    - Password : partner990
+  - Client
+    - Username : hari@gmail.com
+    - Password : ecchi990
+
+### Note
+
+if this project you installed in subdo folder or directory you must change this file <b>detail_loker.php</b> from folder <b>user</b> and go to line 63 changed **base_url("false", "replace this and change it to where this project is saved in sub folder or directory"))**
 
 ## License
 
