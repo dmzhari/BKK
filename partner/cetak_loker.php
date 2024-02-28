@@ -1,7 +1,7 @@
 <?php
 require '../inc/function.database.php';
 require '../inc/function.default.php';
-include "../vendor/tcpdf/tcpdf.php";
+require "../vendor/tecnickcom/tcpdf/tcpdf.php";
 
 class CetakDataPDF extends TCPDF
 {
