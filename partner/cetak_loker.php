@@ -34,7 +34,7 @@ class CetakDataPDF extends TCPDF
         $this->SetFont('helvetica', 'I', 8);
         // Page number
         $this->Cell(0, 10, 'BKK - SMK MAHARDHIKA BATUJAJAR ' . date("Y-m-d"), 0, false, 'L', 0, '', 0, false, 'T', 'M');
-        $this->Cell(0, 10, 'Halaman ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'R', 0, '', 0, false, 'T', 'M');
+        $this->Cell(11, 10, 'Halaman ' . $this->getAliasNumPage() . '/' . $this->getAliasNbPages(), 0, false, 'R', 0, '', 0, false, 'T', 'M');
     }
 
     // Colored table
@@ -126,4 +126,5 @@ $pdf->ColoredTable($header, $data);
 
 // close and output PDF document
 ob_end_clean();
-$pdf->Output("data_.pdf", 'I');
+$user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
+$pdf->Output("Data_Loker_" . $user[0]['nama_perusahaan'] . ".pdf", 'I');
