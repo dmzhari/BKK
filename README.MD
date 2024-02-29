@@ -24,7 +24,7 @@ composer install
     - Username : partner@gmail.com
     - Password : partner990
   - Client
-    - Username : hari@gmail.com
+    - Username : hari990@gmail.com
     - Password : ecchi990
 
 ### Note

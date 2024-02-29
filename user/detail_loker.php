@@ -69,6 +69,8 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
                             <p class="card-text text-capitalize">
                                 <?= $dataloker[0]['tanggal_kadaluarsa'] ?>
                             </p>
+                            <a href="download_brosur?url=<?= base_url(false, 'bkk') ?>/partner/img/foto_loker/<?= $dataloker[0]['foto_pengumuman'] ?>"
+                                class="btn btn-primary form-control">Download Brosur</a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +99,7 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
                             <textarea class="form-control text-capitalize" rows="5" id="syarat_job"
                                 disabled><?= $dataloker[0]['syarat_job'] ?></textarea>
                         </div>
-                        <a class="btn btn-sm btn-primary form-control mb-3" href="#">ACCEPT LOKER</a>
+                        <a class="btn btn-sm btn-success form-control mb-3" href="#">ACCEPT LOKER</a>
                     </div>
                 </div>
             </div>
