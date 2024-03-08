@@ -22,12 +22,27 @@ composer install
   - Finish
 
 - Login User
-  - Partner
-    - Username : partner@gmail.com
-    - Password : partner990
-  - Client
-    - Username : hari990@gmail.com
-    - Password : ecchi990
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Level</th>
+      </tr>
+    </thead>
+    </tbody>
+      <tr>
+        <td>partner@gmail.com</td>
+        <td>partner990</td>
+        <td>Partner</td>
+      </tr>
+      <tr>
+        <td>hari990@gmail.com</td>
+        <td>ecchi990</td>
+        <td>Client</td>
+      </tr>
+    </tbody>
+  </table>
 
 ### Note
 
