@@ -15,8 +15,10 @@ composer install
 
 - Usage
 
-  - create Database name **db_bkkmahardhika** in your phpmyadmin
-  - restore database from folder **db** to db_bkkmahardhika
+  - Create Database name **db_blablabla(Database name is up to you)** in your phpmyadmin
+  - Restore database from folder **db** into the **db_blablabla**
+  - Open Folder **inc** and then open the file **function.database.php**
+  - Then Changed All Database into your MySQL Database
   - Finish
 
 - Login User
@@ -29,7 +31,7 @@ composer install
 
 ### Note
 
-if this project you installed in subdo folder or directory you must change this file <b>detail_loker.php</b> from folder <b>user</b> and go to line 63 changed **base_url("false", "replace this and change it to where this project is saved in sub folder or directory")**
+if this project you installed in sub folder or sub directory you must change this file <b>detail_loker.php</b> from folder <b>user</b> and go to line 63 changed **base_url("false", "replace this and change it to where this project is saved in sub folder or directory")**
 
 ## License
 
