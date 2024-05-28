@@ -99,13 +99,34 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
                             <textarea class="form-control text-capitalize" rows="5" id="syarat_job"
                                 disabled><?= $dataloker[0]['syarat_job'] ?></textarea>
                         </div>
-                        <a class="btn btn-sm btn-success form-control mb-3" href="#">ACCEPT LOKER</a>
+                        <input type="hidden" id="data" value="<?= $user ?>">
+                        <a class="btn btn-sm btn-success form-control mb-3" href="#" data-toggle="modal"
+                            data-target="#accloker">ACCEPT LOKER</a>
                     </div>
                 </div>
             </div>
 
         </div>
         <!-- /.container-fluid -->
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="accloker" tabindex="-1" role="dialog" aria-labelledby="accloker" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="accloker">Anda yakin ingin melamar loker tersebut?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Klick "iya" jika anda sudah yakin</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
+                        <button id="submit" class="btn btn-success" type="button">Iya</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- End of Main Content -->
@@ -172,6 +193,48 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
 
     <!-- Sweet2Alert JS -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#submit").click(function () {
+                let id_user = <?= $user[0]['id'] ?>;
+                let id_loker = <?= $id_loker ?>;
+                let id_partner = <?= $dataloker[0]['id_user'] ?>;
+
+                $.ajax({
+                    url: "acc_loker",
+                    method: "POST",
+                    data: {
+                        "id_user": id_user,
+                        "id_loker": id_loker,
+                        "id_partner": id_partner
+                    },
+                    success: function (res) {
+                        if (res == "success") {
+                            swal.fire({
+                                icon: 'success',
+                                title: 'Success Tambah Loker',
+                                html: 'Anda akan dialihkan kehalaman <b>Loker</b>!!',
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                    // const b = Swal.getHtmlContainer().querySelector('b')
+                                    timerInterval = setInterval(() => {
+                                        // b.textContent = Swal.getTimerLeft()
+                                    }, 100)
+                                },
+                                willClose: () => {
+                                    clearInterval(timerInterval);
+                                    window.location.href = 'detail_loker?id=' + id_loker;
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

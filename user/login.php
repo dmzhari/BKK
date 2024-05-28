@@ -113,8 +113,7 @@ if (!empty($_SESSION)) {
 
     <script>
         $(document).ready(function () {
-            let errno = $(location).attr('href');
-            if (errno.split('?')[1] == 'logout') {
+            if (new URLSearchParams(window.location.search).has('logout')) {
                 swal.fire({
                     icon: 'success',
                     title: 'Success Logout!!'
@@ -123,9 +122,9 @@ if (!empty($_SESSION)) {
 
             $('#showpass').click(function (e) {
                 if ($(this).is(':checked')) {
-                    $('#password').attr('type', 'text');
+                    $('#password').prop('type', 'text');
                 } else {
-                    $('#password').attr('type', 'password');
+                    $('#password').prop('type', 'password');
                 }
             });
 
@@ -180,7 +179,7 @@ if (!empty($_SESSION)) {
                             });
                         }
                     }
-                })
+                });
             });
         });
     </script>

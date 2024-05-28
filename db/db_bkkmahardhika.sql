@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Feb 2024 pada 05.07
+-- Waktu pembuatan: 03 Bulan Mei 2024 pada 04.29
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -78,7 +78,7 @@ CREATE TABLE `tb_client` (
 --
 
 INSERT INTO `tb_client` (`id`, `username`, `password`, `email`, `nama_lengkap`, `jk`, `pendidikan`, `asal_sekolah`, `tanggal_lahir`, `tempat_lahir`, `usia`, `jurusan`, `pekerjaan_terakhir`, `tinggi_badan`, `berat_badan`, `nowa`, `nik`, `level`, `foto`, `cv`, `ktp`, `kk`) VALUES
-(1, 'dmzhari', '$2a$10$O7xcwBVnroFKOcWHfXGzv.7WpJSqVoSzz/B6voF.yTPOibLLlv0Nu', 'hari990@gmail.com', 'Hari Permana Sidiq', 'laki-laki', 'SMK', 'SMK Mahardhika Batujajar', '2003-06-02', 'Bandung', 20, 'RPL', 'Staff HUBIN BKK', 170, 53, '083822080039', '', 'client', '60d5fa44bf86d3f0a323e81e620fbb73.jpg', '7550586825838ac2406f831c1ef8ab4d.jpg', '01a09f2d6376810e9d5e6ecf4f80e8a9.png', 'dfb889e847796a86937381d896262e5a.jpg');
+(1, 'dmzhari', '$2a$10$O7xcwBVnroFKOcWHfXGzv.7WpJSqVoSzz/B6voF.yTPOibLLlv0Nu', 'hari990@gmail.com', 'Hari Permana Sidiq', 'laki-laki', 'SMK', 'SMK Mahardhika Batujajar', '2003-06-02', 'Bandung', 20, 'RPL', 'Staff HUBIN BKK', 170, 53, '083822080039', '', 'client', '60d5fa44bf86d3f0a323e81e620fbb73.jpg', '7550586825838ac2406f831c1ef8ab4d.jpg', '600ae74b1affb5a7b8a3a6febfacea01.png', 'bfcd9f809926833fdd4ea64f745114e6.jpg');
 
 -- --------------------------------------------------------
 
@@ -102,7 +102,7 @@ CREATE TABLE `tb_loker` (
 --
 
 INSERT INTO `tb_loker` (`id_loker`, `judul_loker`, `posisi_loker`, `foto_pengumuman`, `penempatan_job`, `syarat_job`, `tanggal_kadaluarsa`, `id_user`) VALUES
-(1, 'Dibutuhkan Mekanik untuk motor dan mobil cabang bandung dan cimahi', 'Mekanik, Operator Bubut , Operator CNC', 'f0202970ab5f46871fd129d9eef2af8f.png', 'Cimahi, Bandung', 'Berpengalaman 4\r\nSiap Bekerja\r\nTidak Buta Warna\r\nSiap Bekerja dengan Sistem Shift', '2024-02-05', 1);
+(1, 'Dibutuhkan Mekanik untuk motor dan mobil cabang bandung dan cimahi', 'Mekanik, Operator Bubut , Operator CNC', '0e6a8646061b5a2490c04c951ece4121.jpeg', 'Cimahi, Bandung', 'Berpengalaman 4\r\nSiap Bekerja\r\nTidak Buta Warna\r\nSiap Bekerja dengan Sistem Shift', '2024-02-05', 1);
 
 -- --------------------------------------------------------
 
@@ -131,6 +131,18 @@ CREATE TABLE `tb_partner` (
 INSERT INTO `tb_partner` (`id`, `username`, `password`, `email`, `nama_perusahaan`, `nik`, `nowa`, `foto_perusahaan`, `alamat_perusahaan`, `tentang_perusahaan`, `level`) VALUES
 (1, 'smkmahardhika', '$2a$10$i4J9Tcvl6rJPeSbLIQ6wauB5NhCAEC7FhoV9qEjbbv/GTtisE5pjK', 'partner@gmail.com', 'SMK MAHARDHIKA BATUJAJAR', '', '087432431313', '46728462f9dad05a51a72f96b904c64b.jpeg', 'Jl. Batujajar No. 30', 'SMK Mahardhika Terakditasi A', 'partner');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_pelamar`
+--
+
+CREATE TABLE `tb_pelamar` (
+  `id_pel` int(11) NOT NULL,
+  `id_loker` int(100) NOT NULL,
+  `id_client` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -158,6 +170,12 @@ ALTER TABLE `tb_loker`
 --
 ALTER TABLE `tb_partner`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tb_pelamar`
+--
+ALTER TABLE `tb_pelamar`
+  ADD PRIMARY KEY (`id_pel`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang

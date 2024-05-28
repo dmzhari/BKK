@@ -5,8 +5,9 @@ include '../inc/function.default.php';
 cek_session('id_partner', 'partner', '../user/login');
 
 $id = $_SESSION['id_partner'];
+$loker = intval($conn->real_escape_string($_GET['id']));
 $user = myquery("SELECT * FROM tb_partner WHERE id = '$id'");
-$dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
+$pelamar = myquery("SELECT id_client,nama_lengkap,email,nowa,pendidikan FROM tb_pelamar,tb_client WHERE id_loker = '$loker'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +47,7 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Menu Loker BKK</h1>
+                <h1 class="h3 mb-0 text-gray-800">Menu Pelamar BKK</h1>
             </div>
 
             <!-- Content Row -->
@@ -55,53 +56,45 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_user = '$id'");
                 <div class="col-md-12 mb-4">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Data Loker</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Pelamar</h6>
                         </div>
                         <div class="card-body">
-                            <a class="btn btn-md btn-primary mb-3" href="tambah_loker">Tambah Loker</a>
-                            <a class="btn btn-md btn-primary mb-3" href="cetak_loker" target="_blank">Print Loker</a>
+                            <!-- <a class="btn btn-md btn-primary mb-3" href="tambah_loker">Tambah Loker</a>
+                            <a class="btn btn-md btn-primary mb-3" href="cetak_loker" target="_blank">Print Loker</a> -->
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Judul Loker</th>
-                                            <th>Posisi Yang Dibutuhkan</th>
-                                            <th>Penempatan</th>
-                                            <th>Expired</th>
+                                            <th>Nama Pelamar</th>
+                                            <th>Email</th>
+                                            <th>No Wa</th>
+                                            <th>Pendidikan</th>
                                             <th>Opsi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $i = 1 ?>
-                                        <?php foreach ($dataloker as $loker) { ?>
+                                        <?php foreach ($pelamar as $pel) { ?>
                                             <tr>
                                                 <td>
                                                     <?= $i ?>
                                                 </td>
                                                 <td>
-                                                    <a href="detail_loker?id=<?= $loker['id_loker'] ?>"
-                                                        class="d-inline-block text-decoration-none text-truncate"
-                                                        style="max-width: 200px;">
-                                                        <?= $loker['judul_loker'] ?>
-                                                    </a>
+                                                    <?= $pel['nama_lengkap'] ?>
                                                 </td>
                                                 <td>
-                                                    <?= $loker['posisi_loker'] ?>
+                                                    <?= $pel['email'] ?>
                                                 </td>
                                                 <td>
-                                                    <?= $loker['penempatan_job'] ?>
+                                                    <?= $pel['nowa'] ?>
                                                 </td>
                                                 <td>
-                                                    <?= $loker['tanggal_kadaluarsa'] ?>
+                                                    <?= $pel['pendidikan'] ?>
                                                 </td>
                                                 <td>
-                                                    <a href="proses_loker?id=<?= $loker['id_loker'] ?>"
-                                                        class="btn btn-sm btn-danger">Hapus Loker</a>
-                                                    <a href="edit_loker?id=<?= $loker['id_loker'] ?>"
-                                                        class="btn btn-sm btn-success">Edit Loker</a>
-                                                    <a href="cek_pelamar?id=<?= $loker['id_loker'] ?>"
-                                                        class="btn btn-sm btn-primary">Cek Pelamar</a>
+                                                    <a href="download_cv?id_pel=<?= $pel['id_client'] ?>"
+                                                        class="btn btn-sm btn-primary">Download CV</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
