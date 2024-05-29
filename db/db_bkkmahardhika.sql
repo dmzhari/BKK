@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Bulan Mei 2024 pada 04.29
+-- Waktu pembuatan: 29 Bulan Mei 2024 pada 06.13
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -78,7 +78,7 @@ CREATE TABLE `tb_client` (
 --
 
 INSERT INTO `tb_client` (`id`, `username`, `password`, `email`, `nama_lengkap`, `jk`, `pendidikan`, `asal_sekolah`, `tanggal_lahir`, `tempat_lahir`, `usia`, `jurusan`, `pekerjaan_terakhir`, `tinggi_badan`, `berat_badan`, `nowa`, `nik`, `level`, `foto`, `cv`, `ktp`, `kk`) VALUES
-(1, 'dmzhari', '$2a$10$O7xcwBVnroFKOcWHfXGzv.7WpJSqVoSzz/B6voF.yTPOibLLlv0Nu', 'hari990@gmail.com', 'Hari Permana Sidiq', 'laki-laki', 'SMK', 'SMK Mahardhika Batujajar', '2003-06-02', 'Bandung', 20, 'RPL', 'Staff HUBIN BKK', 170, 53, '083822080039', '', 'client', '60d5fa44bf86d3f0a323e81e620fbb73.jpg', '7550586825838ac2406f831c1ef8ab4d.jpg', '600ae74b1affb5a7b8a3a6febfacea01.png', 'bfcd9f809926833fdd4ea64f745114e6.jpg');
+(1, 'dmzhari', '$2a$10$FT7gmmdNjpgIOa5Cmu/g6.mnZaePt/AWbKrG5qVJG0gRGIJlMvxYm', 'hari990@gmail.com', 'Hari Permana Sidiq', 'laki-laki', 'SMK', 'SMK Mahardhika Batujajar', '2003-06-02', 'Bandung', 20, 'RPL', 'Staff HUBIN BKK', 170, 53, '083822080039', '', 'client', '60d5fa44bf86d3f0a323e81e620fbb73.jpg', '7550586825838ac2406f831c1ef8ab4d.jpg', '600ae74b1affb5a7b8a3a6febfacea01.png', 'bfcd9f809926833fdd4ea64f745114e6.jpg');
 
 -- --------------------------------------------------------
 
@@ -102,7 +102,8 @@ CREATE TABLE `tb_loker` (
 --
 
 INSERT INTO `tb_loker` (`id_loker`, `judul_loker`, `posisi_loker`, `foto_pengumuman`, `penempatan_job`, `syarat_job`, `tanggal_kadaluarsa`, `id_user`) VALUES
-(1, 'Dibutuhkan Mekanik untuk motor dan mobil cabang bandung dan cimahi', 'Mekanik, Operator Bubut , Operator CNC', '0e6a8646061b5a2490c04c951ece4121.jpeg', 'Cimahi, Bandung', 'Berpengalaman 4\r\nSiap Bekerja\r\nTidak Buta Warna\r\nSiap Bekerja dengan Sistem Shift', '2024-02-05', 1);
+(1, 'Dibutuhkan Mekanik untuk motor dan mobil cabang bandung dan cimahi', 'Mekanik, Operator Bubut , Operator CNC', '0e6a8646061b5a2490c04c951ece4121.jpeg', 'Cimahi, Bandung', 'Berpengalaman 4\r\nSiap Bekerja\r\nTidak Buta Warna\r\nSiap Bekerja dengan Sistem Shift', '2024-02-05', 1),
+(2, 'asdasd', 'asdas', '14e607fccbd937b4db44357835e9138d.jpg', 'dasdasd', 'asdasd', '2024-05-29', 1);
 
 -- --------------------------------------------------------
 
@@ -139,9 +140,18 @@ INSERT INTO `tb_partner` (`id`, `username`, `password`, `email`, `nama_perusahaa
 
 CREATE TABLE `tb_pelamar` (
   `id_pel` int(11) NOT NULL,
+  `id_partner` int(11) NOT NULL,
   `id_loker` int(100) NOT NULL,
   `id_client` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tb_pelamar`
+--
+
+INSERT INTO `tb_pelamar` (`id_pel`, `id_partner`, `id_loker`, `id_client`) VALUES
+(1, 1, 1, 1),
+(2, 1, 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -197,13 +207,19 @@ ALTER TABLE `tb_client`
 -- AUTO_INCREMENT untuk tabel `tb_loker`
 --
 ALTER TABLE `tb_loker`
-  MODIFY `id_loker` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_loker` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_partner`
 --
 ALTER TABLE `tb_partner`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_pelamar`
+--
+ALTER TABLE `tb_pelamar`
+  MODIFY `id_pel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
