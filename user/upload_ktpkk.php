@@ -162,7 +162,7 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
                 let ktp = $('#ktp').prop('files')[0];
                 let fd = new FormData();
 
-                if (kk != undefined || ktp != undefined) {
+                if (kk != undefined && ktp != undefined) {
                     fd.append("kk", kk);
                     fd.append("ktp", ktp);
                     // fd.append("file", '');
@@ -203,7 +203,7 @@ $user = myquery("SELECT * FROM tb_client WHERE id = '$id'");
                 } else {
                     swal.fire({
                         icon: 'warning',
-                        title: 'File Belum Di Upload!'
+                        title: 'File KK Atau KTP Belum Di Upload!'
                     });
                 }
             });
