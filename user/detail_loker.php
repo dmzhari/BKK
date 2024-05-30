@@ -229,6 +229,11 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
                                     window.location.href = 'detail_loker?id=' + id_loker;
                                 }
                             });
+                        } else if (res == 'Sudah Pernah') {
+                            swal.fire({
+                                icon: 'warning',
+                                title: 'Anda Sudah Pernah Mendaftar Loker Ini',
+                            });
                         }
                     }
                 });

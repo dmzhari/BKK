@@ -59,8 +59,6 @@ $pelamar = myquery("SELECT id_client,nama_lengkap,email,nowa,pendidikan FROM tb_
                             <h6 class="m-0 font-weight-bold text-primary">Data Pelamar</h6>
                         </div>
                         <div class="card-body">
-                            <!-- <a class="btn btn-md btn-primary mb-3" href="tambah_loker">Tambah Loker</a>
-                            <a class="btn btn-md btn-primary mb-3" href="cetak_loker" target="_blank">Print Loker</a> -->
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -176,7 +174,7 @@ $pelamar = myquery("SELECT id_client,nama_lengkap,email,nowa,pendidikan FROM tb_
     <!-- Sweet2Alert JS -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
+    <!-- <script>
         $(document).ready(function () {
             let param = window.location.href;
             if (param.split('?')[1] == 'hapus') {
@@ -186,7 +184,7 @@ $pelamar = myquery("SELECT id_client,nama_lengkap,email,nowa,pendidikan FROM tb_
                 });
             }
         });
-    </script>
+    </script> -->
 </body>
 
 </html>
