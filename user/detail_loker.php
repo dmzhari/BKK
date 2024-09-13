@@ -60,7 +60,7 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
                             <h5>Foto Brosur</h5>
                         </div>
                         <img class="card-img-top img-fluid px-3 px-sm-4 mt-3 mb-4"
-                            src="<?= base_url(false, 'bkk') ?>/partner/img/foto_loker/<?= $dataloker[0]['foto_pengumuman'] ?>"
+                            src="<?= base_url(false, '') ?>/partner/img/foto_loker/<?= $dataloker[0]['foto_pengumuman'] ?>"
                             alt="Foto Brosur">
                         <div class="card-body text-center">
                             <h5 class="card-title text-uppercase">
@@ -102,6 +102,7 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
                         <input type="hidden" id="data" value="<?= $user ?>">
                         <a class="btn btn-sm btn-success form-control mb-3" href="#" data-toggle="modal"
                             data-target="#accloker">ACCEPT LOKER</a>
+                        <button class="btn btn-sm btn-primary form-control" id="back">Kembali Ke Halaman Loker</button>
                     </div>
                 </div>
             </div>
@@ -196,6 +197,10 @@ $dataloker = myquery("SELECT * FROM tb_loker WHERE id_loker = '$id_loker'");
 
     <script>
         $(document).ready(function () {
+            $("#back").click(function () {
+                window.history.go(-1);
+            });
+
             $("#submit").click(function () {
                 let id_user = <?= $user[0]['id'] ?>;
                 let id_loker = <?= $id_loker ?>;
